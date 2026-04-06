@@ -1,6 +1,6 @@
-# True Balance Accounting & Tax
+# Golden Flow Accounting & Tax
 
-Professional website for **True Balance Accounting & Tax** (Golden Flow LLC) — a Texas-based accounting and tax services firm serving small businesses and individuals.
+Professional website for **Golden Flow Accounting & Tax** (Golden Flow LLC) — a Texas-based accounting and tax services firm serving small businesses and individuals.
 
 ## Project Structure
 
