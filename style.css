@@ -4,9 +4,9 @@
 
 /* ── Custom Properties ─────────────────────────────────────────── */
 :root {
-  --color-primary:       #1B3A6B;   /* Deep navy blue */
-  --color-primary-dark:  #0F2251;
-  --color-primary-mid:   #1E3A8A;
+  --color-primary:       #2E7D32;   /* Deep forest green */
+  --color-primary-dark:  #1B5E20;
+  --color-primary-mid:   #388E3C;
   --color-accent:        #C9A84C;   /* Warm gold */
   --color-accent-dark:   #A8892E;
   --color-accent-light:  #F5ECD0;
@@ -16,7 +16,7 @@
   --color-border:        #E2E8F0;
   --color-bg:            #ffffff;
   --color-bg-alt:        #F8F9FC;
-  --color-bg-dark:       #0F1F3D;
+  --color-bg-dark:       #1B3A2B;
 
   --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
   --font-serif:  'Merriweather', Georgia, serif;
