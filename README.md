@@ -32,7 +32,7 @@ true-balance-accounting/
    https://YOUR_USERNAME.github.io/true-balance-accounting/
    ```
 
-### Option B — Custom domain (e.g., truebalancetax.com)
+### Option B — Custom domain (e.g., goldenflowaccountingtax.com)
 
 1. Complete Option A above.
 2. In your domain registrar's DNS settings, add:
@@ -47,7 +47,7 @@ true-balance-accounting/
 3. In **Settings → Pages**, enter your custom domain and enable **Enforce HTTPS**.
 4. Add a `CNAME` file to the repository root containing your domain:
    ```
-   truebalancetax.com
+   goldenflowaccountingtax.com
    ```
 
 DNS propagation can take up to 24–48 hours.
