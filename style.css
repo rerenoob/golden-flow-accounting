@@ -241,8 +241,10 @@ button { cursor: pointer; }
 .nav-tech {
   background: #2E7D32 !important;
   color: #fff !important;
-  margin-left: 8px;
+  margin-left: 4px;
   box-shadow: 0 2px 8px rgba(46,125,50,.35);
+  font-size: 0.85rem !important;
+  padding: 6px 12px !important;
 }
 .nav-tech:hover {
   background: #1B5E20 !important;
