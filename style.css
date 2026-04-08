@@ -238,6 +238,16 @@ button { cursor: pointer; }
   background: rgba(255,255,255,.1);
 }
 
+.nav-tech {
+  background: #2E7D32 !important;
+  color: #fff !important;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px rgba(46,125,50,.35);
+}
+.nav-tech:hover {
+  background: #1B5E20 !important;
+}
+
 .nav-cta {
   background: var(--color-accent) !important;
   color: #fff !important;
