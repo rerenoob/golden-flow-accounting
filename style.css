@@ -1111,6 +1111,25 @@ select { cursor: pointer; }
     border-radius: var(--radius-sm);
   }
   .nav-cta { margin-left: 0; margin-top: 8px; text-align: center; }
+  
+  /* Onboarding page navigation - always visible, no hamburger */
+  .onboarding-nav {
+    display: flex !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+  }
+  .onboarding-nav a {
+    color: var(--color-primary) !important;
+    font-weight: 500;
+    padding: 8px 16px !important;
+  }
+  .onboarding-nav a:hover {
+    color: var(--color-primary-dark) !important;
+    background: transparent !important;
+  }
 
   .section { padding: 72px 0; }
 

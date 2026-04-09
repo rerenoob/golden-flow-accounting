@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Get started with Golden Flow Accounting and Tax. Complete our smart onboarding form for a personalized service recommendation and free consultation." />
   <title>Get Started - Golden Flow Accounting and Tax | Texas CPA & Tax Services</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=202604091215" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
@@ -241,10 +241,7 @@
         <img src="logo.png" alt="Golden Flow Accounting and Tax" class="logo-image" />
         <span class="logo-text">Golden Flow <em>Accounting and Tax</em></span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links onboarding-nav">
         <li><a href="index.html">← Back to Home</a></li>
       </ul>
     </nav>
@@ -852,16 +849,7 @@
           header.classList.toggle('scrolled', window.scrollY > 20);
         }, { passive: true });
 
-        // ── Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        if (navToggle && navLinks) {
-          navToggle.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('visible');
-          });
-        }
+
       });
     </script>
 
