@@ -281,7 +281,6 @@
             <!-- Hidden fields for Formspree -->
             <input type="hidden" name="_subject" value="New Golden Flow Onboarding Submission">
             <input type="hidden" name="_replyto" value="" id="reply-to-email">
-            <input type="hidden" name="_next" value="https://rerenoob.github.io/golden-flow-accounting/thank-you.html">
             <input type="hidden" name="_cc" value="onboard@goldenflowaccountingtax.com">
             <!-- Optional: Add BCC to another email (remove if not needed) -->
             <input type="hidden" name="_bcc" value="dphamsw@gmail.com">
@@ -548,6 +547,11 @@
                     Get Your Free Consultation
                 </button>
                 
+                <!-- Form status messages (hidden by default) -->
+                <div id="form-status" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px; background: #f0f7f0; border: 1px solid #c8e6c9;">
+                    <p id="status-message" style="margin: 0; color: #2E7D32; font-weight: 500;"></p>
+                </div>
+                
                 <p class="form-note">
                     By submitting this form, you agree to be contacted by Golden Flow Accounting and Tax. 
                     We respect your privacy and will never share your information.
@@ -725,8 +729,10 @@
                 cb.addEventListener('change', updateRecommendation);
             });
             
-            // Form validation
-            form.addEventListener('submit', function(event) {
+            // Form validation and AJAX submission
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
                 let valid = true;
                 
                 // Clear previous errors
@@ -758,17 +764,76 @@
                 }
                 
                 if (!valid) {
-                    event.preventDefault();
                     // Optional: Scroll to first error (commented out)
                     // const firstError = document.querySelector('.form-error.show');
                     // if (firstError) {
                     //     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     // }
-                } else {
-                    // Change button text to show submission in progress
-                    const submitBtn = document.getElementById('submit-btn');
-                    submitBtn.innerHTML = 'Sending...';
-                    submitBtn.disabled = true;
+                    return;
+                }
+                
+                // Change button text to show submission in progress
+                const submitBtn = document.getElementById('submit-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = 'Sending...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Collect form data
+                    const formData = new FormData(form);
+                    
+                    // Submit to Formspree via AJAX
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Success - redirect to thank you page
+                        window.location.href = 'https://rerenoob.github.io/golden-flow-accounting/thank-you.html';
+                    } else {
+                        // Formspree returned an error
+                        const errorData = await response.json();
+                        console.error('Formspree error:', errorData);
+                        
+                        // Show error message in form status area
+                        const statusDiv = document.getElementById('form-status');
+                        const statusMsg = document.getElementById('status-message');
+                        statusMsg.textContent = 'Sorry, there was an error submitting the form. Please try again or contact us directly at info@goldenflowaccountingtax.com';
+                        statusDiv.style.display = 'block';
+                        statusDiv.style.background = '#fff5f5';
+                        statusDiv.style.borderColor = '#ffcdd2';
+                        statusMsg.style.color = '#c62828';
+                        
+                        // Scroll to error message
+                        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        
+                        // Reset button
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    // Network error or other issue
+                    console.error('Submission error:', error);
+                    
+                    // Show error message in form status area
+                    const statusDiv = document.getElementById('form-status');
+                    const statusMsg = document.getElementById('status-message');
+                    statusMsg.textContent = 'Network error. Please check your connection and try again.';
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.background = '#fff5f5';
+                    statusDiv.style.borderColor = '#ffcdd2';
+                    statusMsg.style.color = '#c62828';
+                    
+                    // Scroll to error message
+                    statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                 }
             });
             
