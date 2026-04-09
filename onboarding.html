@@ -398,6 +398,18 @@
                         <input type="checkbox" name="services" value="financial-planning">
                         <strong>Financial Planning & Strategy</strong> - Cash flow analysis, growth planning
                     </label>
+                    
+                    <label>
+                        <input type="checkbox" name="services" value="other" id="other-services-checkbox">
+                        <strong>Other Services</strong> - Specify below
+                    </label>
+                </div>
+                
+                <!-- Other Services Text Input (hidden by default) -->
+                <div class="form-group" id="other-services-container" style="display: none; margin-top: 20px;">
+                    <label for="other-services-text">Please specify other services you need:</label>
+                    <textarea id="other-services-text" name="other-services-text" rows="3" placeholder="e.g., Audit support, international tax, specific industry expertise..."></textarea>
+                    <p class="form-note" style="text-align: left; margin-top: 5px;">Describe any other accounting or tax services not listed above.</p>
                 </div>
             </div>
             
@@ -563,10 +575,39 @@
             const emailInput = document.getElementById('email');
             const replyToHidden = document.getElementById('reply-to-email');
             
+            // Other services elements
+            const otherServicesCheckbox = document.getElementById('other-services-checkbox');
+            const otherServicesContainer = document.getElementById('other-services-container');
+            const otherServicesText = document.getElementById('other-services-text');
+            
             // Update hidden reply-to field when email changes
             emailInput.addEventListener('input', function() {
                 replyToHidden.value = this.value;
             });
+            
+            // Show/hide Other services text field
+            if (otherServicesCheckbox && otherServicesContainer) {
+                otherServicesCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        otherServicesContainer.style.display = 'block';
+                        // Smooth scroll to show the text field
+                        setTimeout(() => {
+                            otherServicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 100);
+                    } else {
+                        otherServicesContainer.style.display = 'none';
+                        // Clear the text field when unchecked
+                        if (otherServicesText) {
+                            otherServicesText.value = '';
+                        }
+                    }
+                });
+                
+                // Initialize based on current state
+                if (otherServicesCheckbox.checked) {
+                    otherServicesContainer.style.display = 'block';
+                }
+            }
             
             // Smart recommendation logic
             function updateRecommendation() {
@@ -639,6 +680,11 @@
                 
                 if (selectedServices.includes('irs-notice')) {
                     features.push('✓ IRS notice response support included');
+                }
+                
+                // Add note for other services
+                if (selectedServices.includes('other') && otherServicesText && otherServicesText.value.trim()) {
+                    features.push('✓ Custom services: We\'ll discuss your specific needs');
                 }
                 
                 // Update recommendation display
