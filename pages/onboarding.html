@@ -239,7 +239,37 @@
         }
     .skip-link { position: absolute; top: -100%; left: 0; background: #2E7D32; color: #fff; padding: 12px 20px; font-weight: 600; z-index: 9999; text-decoration: none; border-radius: 0 0 6px 0; }
     .skip-link:focus { top: 0; }
-    </style>
+    
+        .form-progress-simple {
+            max-width: 500px;
+            margin: 30px auto 40px;
+            text-align: center;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+        .progress-bar {
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+        .progress-count {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        .progress-time {
+            font-style: italic;
+        }</style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -263,22 +293,13 @@
             <h1>Get Started with Golden Flow</h1>
             <p class="onboarding-subtitle">Complete this form to get a personalized service recommendation and free consultation. We'll contact you within 24 hours.</p>
             
-            <div class="form-progress" aria-hidden="true">
-                <div class="progress-step">
-                    <div class="step-circle active">1</div>
-                    <div class="step-label active">Business Info</div>
+            <div class="form-progress-simple">
+                <div class="progress-info">
+                    <span class="progress-count">4 sections</span>
+                    <span class="progress-time">~5 minutes to complete</span>
                 </div>
-                <div class="progress-step">
-                    <div class="step-circle">2</div>
-                    <div class="step-label">Services Needed</div>
-                </div>
-                <div class="progress-step">
-                    <div class="step-circle">3</div>
-                    <div class="step-label">Current System</div>
-                </div>
-                <div class="progress-step">
-                    <div class="step-circle">4</div>
-                    <div class="step-label">Contact Info</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
                 </div>
             </div>
         </div>
@@ -558,8 +579,9 @@
                 </div>
                 
                 <p class="form-note">
-                    By submitting this form, you agree to be contacted by Golden Flow Accounting and Tax. 
+                    By submitting this form, you agree to be contacted by Golden Flow Accounting and Tax.
                     We respect your privacy and will never share your information.
+                    View our <a href="privacy-policy.html" style="color: #2E7D32; text-decoration: underline;">Privacy Policy</a>.
                 </p>
                 
                 <p class="required-note">* Required fields</p>
@@ -628,14 +650,31 @@
                     return;
                 }
                 
-                // Determine package based on revenue
+                // Determine package based on revenue and business complexity
                 let packageType, packageName, price, features, description;
                 
-                if (revenue === 'under-50k' || revenue === '50k-100k') {
+                // Get business type to assess complexity
+                const businessType = document.querySelector('input[name="businessType"]:checked')?.value || '';
+                const hasEmployees = document.getElementById('hasEmployees')?.checked || false;
+                const hasPayroll = document.getElementById('hasPayroll')?.checked || false;
+                
+                // Assess business complexity
+                const isComplexBusiness = hasEmployees || hasPayroll || 
+                                         businessType === 'partnership' || 
+                                         businessType === 'corporation' ||
+                                         businessType === 'llc-multi-member';
+                
+                // Package recommendation logic with overlap at boundaries
+                if (revenue === 'under-50k') {
+                    // Always Starter for very small businesses
                     packageType = 'starter';
                     packageName = 'Starter Package';
                     price = '$199/month';
                     description = 'Perfect for small businesses getting started with professional accounting.';
+                // Add explanation for complex business recommendation
+                if (revenue === '50k-100k' && isComplexBusiness) {
+                    description += ' Recommended due to business complexity (employees, payroll, or entity type).';
+                }
                     features = [
                         'Monthly bookkeeping & reconciliation',
                         'Basic financial statements (P&L, Balance Sheet)',
@@ -644,13 +683,15 @@
                         'Annual tax preparation (1040 + Schedule C)'
                     ];
                 } 
-                else if (revenue === '100k-250k' || revenue === '250k-500k') {
-                    packageType = 'business';
-                    packageName = 'Business Package';
-                    price = '$499/month';
-                    description = 'Comprehensive accounting for growing businesses.';
-                    features = [
-                        'Everything in Starter, plus:',
+                else if (revenue === '50k-100k') {
+                    // $50k-100k: Starter for simple businesses, Business for complex ones
+                    if (isComplexBusiness) {
+                        packageType = 'business';
+                        packageName = 'Business Package';
+                        price = '$499/month';
+                        description = 'Comprehensive accounting for growing businesses with complex needs.';
+                        features = [
+                            'Everything in Starter, plus:',
                         'Monthly financial reports with insights',
                         'Cash flow forecasting',
                         'Sales tax filing (Texas)',
