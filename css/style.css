@@ -10,7 +10,6 @@
   --color-accent:        #C9A84C;   /* Warm gold */
   --color-accent-dark:   #A8892E;
   --color-accent-light:  #F5ECD0;
-  --color-gold:          #C9A84C;   /* Gold highlight */
   --color-text:          #1C1C1C;
   --color-text-muted:    #64748B;
   --color-border:        #E2E8F0;
@@ -75,7 +74,6 @@ button, input, select, textarea {
   color: inherit;
   border: none;
   background: transparent;
-  outline: none;
 }
 button { cursor: pointer; }
 

@@ -4,12 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Golden Flow Accounting and Tax — Professional tax preparation, bookkeeping, payroll, and outsourced accounting services for small businesses and individuals in Texas." />
+  <meta property="og:title" content="Golden Flow Accounting and Tax | Texas CPA & Tax Services" />
+  <meta property="og:description" content="Professional tax preparation, bookkeeping, and payroll for Texas small businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://goldenflowaccountingtax.com/" />
+  <meta property="og:image" content="https://goldenflowaccountingtax.com/assets/images/logos/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://goldenflowaccountingtax.com/" />
   <title>Golden Flow Accounting and Tax | Texas CPA &amp; Tax Services</title>
   <link rel="stylesheet" href="css/style.css?v=202604101200" />
   <link rel="icon" href="assets/favicon/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "Golden Flow Accounting and Tax",
+  "description": "Professional accounting and tax services for Texas small businesses and individuals.",
+  "areaServed": "Texas",
+  "email": "info@goldenflowaccountingtax.com",
+  "openingHours": ["Mo-Fr 09:00-18:00", "Sa 10:00-14:00"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  }
+}
+</script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -413,8 +436,8 @@
           <div class="about-shape"></div>
           <div class="about-stats">
             <div class="stat">
-              <span class="stat-number">500+</span>
-              <span class="stat-label">Clients Served</span>
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Years CPA Experience</span>
             </div>
             <div class="stat">
               <span class="stat-number">100%</span>
@@ -601,49 +624,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => { el.classList.add('reveal'); revealObserver.observe(el); });
 
-    // ── Contact form (client-side demo — wire up to Formspree or backend)
-    const form = document.getElementById('contactForm');
-    const successMsg = document.getElementById('formSuccess');
-    const submitBtn = document.getElementById('submitBtn');
 
-    function validateField(input) {
-      const error = input.parentElement.querySelector('.field-error');
-      if (!error) return true;
-      if (!input.checkValidity()) {
-        const msg = input.type === 'email' ? 'Please enter a valid email address.'
-          : 'This field is required.';
-        error.textContent = msg;
-        input.setAttribute('aria-invalid', 'true');
-        return false;
-      }
-      error.textContent = '';
-      input.removeAttribute('aria-invalid');
-      return true;
-    }
-
-    form.querySelectorAll('[required]').forEach(input => {
-      input.addEventListener('blur', () => validateField(input));
-    });
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let valid = true;
-      form.querySelectorAll('[required]').forEach(input => {
-        if (!validateField(input)) valid = false;
-      });
-      if (!valid) return;
-
-      // Simulate submission — replace this block with your actual form handler
-      submitBtn.disabled = true;
-      submitBtn.querySelector('.btn-text').textContent = 'Sending…';
-      setTimeout(() => {
-        form.reset();
-        form.hidden = true;
-        successMsg.hidden = false;
-        submitBtn.disabled = false;
-        submitBtn.querySelector('.btn-text').textContent = 'Send My Request';
-      }, 800);
-    });
   </script>
 
 </body>

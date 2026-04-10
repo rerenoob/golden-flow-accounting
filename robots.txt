@@ -1,0 +1,8 @@
+# Golden Flow Accounting & Tax - robots.txt
+User-agent: *
+Disallow: /pages/business-plan.html
+Disallow: /pages/technical-roadmap.html
+Disallow: /pages/client-facing-projects.html
+Allow: /
+
+Sitemap: https://goldenflowaccountingtax.com/sitemap.xml
