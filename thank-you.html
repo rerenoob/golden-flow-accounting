@@ -168,9 +168,12 @@
         text-align: center;
       }
     }
+    .skip-link { position: absolute; top: -100%; left: 0; background: #2E7D32; color: #fff; padding: 12px 20px; font-weight: 600; z-index: 9999; text-decoration: none; border-radius: 0 0 6px 0; }
+    .skip-link:focus { top: 0; }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION ===== -->
   <header class="site-header" id="site-header">
@@ -187,14 +190,12 @@
         <li><a href="index.html#pricing">Pricing</a></li>
         <li><a href="index.html#why-us">Why Us</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="client-facing-projects.html" class="nav-tech">Client Projects</a></li>
-        <li><a href="technical-roadmap.html" class="nav-tech">Tech Roadmap</a></li>
         <li><a href="onboarding.html" class="nav-cta">Get a Free Consultation</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <div class="thank-you-container">
       <!-- Success Icon -->
       <div class="thank-you-icon">✅</div>
@@ -258,7 +259,7 @@
       
       <!-- Auto-redirect Timer -->
       <div class="timer" id="timer">
-        You will be redirected to the homepage in <span id="countdown">10</span> seconds...
+        You will be redirected to the homepage in <span id="countdown">20</span> seconds...
       </div>
       
       <!-- Additional Resources -->
@@ -355,7 +356,7 @@
     }
 
     // ── Auto-redirect timer
-    let seconds = 10;
+    let seconds = 20;
     const countdownElement = document.getElementById('countdown');
     const timerElement = document.getElementById('timer');
     

@@ -230,9 +230,12 @@
                 padding: 20px;
             }
         }
+    .skip-link { position: absolute; top: -100%; left: 0; background: #2E7D32; color: #fff; padding: 12px 20px; font-weight: 600; z-index: 9999; text-decoration: none; border-radius: 0 0 6px 0; }
+    .skip-link:focus { top: 0; }
     </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ===== NAVIGATION ===== -->
   <header class="site-header" id="site-header">
@@ -247,7 +250,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <div class="onboarding-container">
         <div class="onboarding-header">
             <h1>Get Started with Golden Flow</h1>
@@ -279,8 +282,6 @@
             <input type="hidden" name="_subject" value="New Golden Flow Onboarding Submission">
             <input type="hidden" name="_replyto" value="" id="reply-to-email">
             <input type="hidden" name="_cc" value="onboard@goldenflowaccountingtax.com">
-            <!-- Optional: Add BCC to another email (remove if not needed) -->
-            <input type="hidden" name="_bcc" value="dphamsw@gmail.com">
             
             <!-- Step 1: Business Information -->
             <div class="form-section">
@@ -809,11 +810,15 @@
                     
                     if (response.ok) {
                         // Success - redirect to thank you page
-                        window.location.href = 'https://rerenoob.github.io/golden-flow-accounting/thank-you.html';
+                        window.location.href = 'thank-you.html';
                     } else {
                         // Formspree returned an error
-                        const errorData = await response.json();
-                        console.error('Formspree error:', errorData);
+                        try {
+                            const errorData = await response.json();
+                            console.error('Formspree error:', errorData);
+                        } catch (e) {
+                            console.error('Formspree error (non-JSON response):', response.status);
+                        }
                         showFormError('Sorry, there was an error submitting the form. Please try again or contact us directly at info@goldenflowaccountingtax.com');
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
