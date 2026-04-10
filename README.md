@@ -6,9 +6,21 @@ Professional website for **Golden Flow Accounting & Tax** (Golden Flow LLC) — 
 
 ```
 golden-flow-accounting/
-├── index.html   # Single-page website (all sections)
-├── style.css    # Stylesheet
-└── README.md    # This file
+├── index.html              # Main landing page
+├── pages/                  # Additional HTML pages
+│   ├── business-plan.html
+│   ├── client-facing-projects.html
+│   ├── onboarding.html
+│   ├── technical-roadmap.html
+│   └── thank-you.html
+├── css/                    # Stylesheets
+│   └── style.css
+├── assets/                 # Images, icons, fonts
+│   ├── favicon/
+│   ├── icons/
+│   └── images/
+├── CNAME                   # Custom domain configuration
+└── README.md               # This file
 ```
 
 ## Deploy to GitHub Pages
@@ -19,7 +31,7 @@ golden-flow-accounting/
 2. Push the files:
    ```bash
    git init
-   git add index.html style.css README.md
+   git add index.html pages/ css/ assets/ README.md CNAME
    git commit -m "Initial website"
    git branch -M main
    git remote add origin https://github.com/YOUR_USERNAME/golden-flow-accounting.git
