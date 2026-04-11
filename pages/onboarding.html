@@ -1046,7 +1046,7 @@
           <!-- Legal Consent Section -->
           <div class="consent-section">
             <div class="consent-checkbox">
-              <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+              <input type="checkbox" id="privacy-consent" name="privacy-consent" required aria-describedby="privacy-consent-error">
               <label for="privacy-consent">
                 I have read and agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> 
                 and <a href="terms-of-service.html" target="_blank">Terms of Service</a>.
@@ -1059,7 +1059,7 @@
             </div>
             
             <div class="consent-checkbox">
-              <input type="checkbox" id="contact-consent" name="contact-consent" required>
+              <input type="checkbox" id="contact-consent" name="contact-consent" required aria-describedby="contact-consent-error">
               <label for="contact-consent">
                 I consent to be contacted by Golden Flow Accounting & Tax via email and phone 
                 regarding my inquiry and free consultation. I understand that I am not obligated 
@@ -1437,6 +1437,14 @@
         e.preventDefault();
         if (isSubmitting) return;
 
+        // Honeypot validation (bot protection) - FIRST check
+        const honeypot = form.querySelector('input[name="website"]');
+        if (honeypot && honeypot.value.trim() !== '') {
+          // Bot detected - silently fail without any feedback
+          console.log('Bot detected via honeypot field');
+          return;
+        }
+
         // Clear previous errors
         form.querySelectorAll('.form-error').forEach(el => el.classList.remove('show'));
         document.getElementById('form-status').style.display = 'none';
@@ -1483,18 +1491,6 @@
           document.getElementById('contact-consent-error').classList.add('show');
           markInvalid(contactConsent);
           valid = false;
-        }
-
-        // Honeypot validation (bot protection)
-        const honeypot = form.querySelector('input[name="website"]');
-        if (honeypot && honeypot.value.trim() !== '') {
-          // Bot detected - silently fail
-          console.log('Bot detected via honeypot field');
-          showStatus('Thank you for your submission. We\'ll be in touch soon.', 'success');
-          submitBtn.innerHTML = origText;
-          submitBtn.disabled = false;
-          isSubmitting = false;
-          return;
         }
 
         if (!valid) {
