@@ -120,18 +120,7 @@
       font-size: 1rem;
       margin: 20px 0 8px;
     }
-    .highlight-box {
-      background: #f0f7f0;
-      border-left: 4px solid #C9A84C;
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 16px 0;
-      color: #333;
-      font-size: 0.95rem;
-    }
-    .highlight-box strong {
-      color: #2E7D32;
-    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -173,6 +162,9 @@
     }
     .back-top a:hover {
       text-decoration: underline;
+    }
+        @media (max-width: 860px) {
+      .toc ol { columns: 1; }
     }
     @media (max-width: 640px) {
       .privacy-container { padding: 40px 16px 60px; }
@@ -347,7 +339,7 @@
   </header>
 
   <!-- Back navigation for users coming from onboarding form -->
-  <div class="back-nav">
+  <div class="back-nav" role="navigation" aria-label="Page navigation">
     <div class="container">
       <a href="onboarding.html" class="back-link">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
