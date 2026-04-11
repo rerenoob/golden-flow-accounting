@@ -614,7 +614,16 @@
     @media (max-width: 400px) {
       .system-cards { grid-template-columns: 1fr; }
     }
-  </style>
+  
+    /* Price note for estimated pricing */
+    .price-note {
+      display: block;
+      font-size: 0.75rem;
+      color: #666;
+      font-weight: normal;
+      margin-top: 2px;
+      font-style: italic;
+    }</style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -851,6 +860,7 @@
                 id="other-services-text"
                 name="other-services-text"
                 rows="3"
+                maxlength="1000"
                 placeholder="e.g., Audit support, international tax, specific industry expertise..."
               ></textarea>
             </div>
@@ -913,6 +923,7 @@
               id="pain-points"
               name="pain-points"
               rows="3"
+              maxlength="1000"
               placeholder="e.g., Too much time on bookkeeping, confusing tax rules, payroll errors, not knowing if I'm profitable..."
             ></textarea>
           </div>
@@ -975,7 +986,7 @@
                 name="phone"
                 autocomplete="tel"
                 placeholder="(555) 123-4567"
-                inputmode="numeric"
+                inputmode="tel"
               >
             </div>
           </div>
@@ -1030,6 +1041,55 @@
 
         <!-- ── Submit ── -->
         <div class="form-actions">
+
+
+          <!-- Legal Consent Section -->
+          <div class="consent-section">
+            <div class="consent-checkbox">
+              <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+              <label for="privacy-consent">
+                I have read and agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> 
+                and <a href="terms-of-service.html" target="_blank">Terms of Service</a>.
+                <span class="required-indicator" aria-hidden="true">*</span>
+                <span class="visually-hidden">Required</span>
+              </label>
+              <div id="privacy-consent-error" class="form-error" role="alert" aria-live="polite">
+                You must agree to the Privacy Policy and Terms of Service to continue.
+              </div>
+            </div>
+            
+            <div class="consent-checkbox">
+              <input type="checkbox" id="contact-consent" name="contact-consent" required>
+              <label for="contact-consent">
+                I consent to be contacted by Golden Flow Accounting & Tax via email and phone 
+                regarding my inquiry and free consultation. I understand that I am not obligated 
+                to purchase any services.
+                <span class="required-indicator" aria-hidden="true">*</span>
+                <span class="visually-hidden">Required</span>
+              </label>
+              <div id="contact-consent-error" class="form-error" role="alert" aria-live="polite">
+                You must consent to contact to schedule your free consultation.
+              </div>
+            </div>
+            
+            <div class="consent-checkbox">
+              <input type="checkbox" id="sms-consent" name="sms-consent">
+              <label for="sms-consent">
+                <strong>Optional:</strong> I also consent to receive SMS/text messages about 
+                appointment reminders and important updates. Message frequency varies. 
+                Reply STOP to opt out. Reply HELP for help. Message and data rates may apply.
+              </label>
+            </div>
+            
+            <p class="consent-note">
+              <strong>How we use your information:</strong> Annual revenue data helps us match 
+              you with appropriate service tiers. Automated recommendations are starting points 
+              for discussion, not professional advice. After submission, we'll email a confirmation 
+              and call within 24 business hours to schedule your free consultation.
+            </p>
+          </div>
+          <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
+        
           <button type="submit" class="btn-submit" id="submit-btn">
             Get My Free Consultation
           </button>
@@ -1043,47 +1103,11 @@
             <div class="submit-trust-item">🚫 No spam, ever</div>
             <div class="submit-trust-item">📞 We call you — no pressure</div>
           </div>
-
-          <!-- Legal Consent Section -->
-          <div class="consent-section">
-            <div class="consent-checkbox">
-              <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
-              <label for="privacy-consent">
-                I have read and agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> 
-                and <a href="terms-of-service.html" target="_blank">Terms of Service</a>.
-                <span class="required-indicator" aria-hidden="true">*</span>
-                <span class="visually-hidden">Required</span>
-              </label>
-            </div>
-            
-            <div class="consent-checkbox">
-              <input type="checkbox" id="contact-consent" name="contact-consent" required>
-              <label for="contact-consent">
-                I consent to be contacted by Golden Flow Accounting & Tax via email and phone 
-                regarding my inquiry and free consultation. I understand that I am not obligated 
-                to purchase any services.
-                <span class="required-indicator" aria-hidden="true">*</span>
-                <span class="visually-hidden">Required</span>
-              </label>
-            </div>
-            
-            <div class="consent-checkbox">
-              <input type="checkbox" id="sms-consent" name="sms-consent">
-              <label for="sms-consent">
-                <strong>Optional:</strong> I also consent to receive SMS/text messages about 
-                appointment reminders and important updates. Message frequency varies. 
-                Reply STOP to opt out. Message and data rates may apply.
-              </label>
-            </div>
-            
-            <p class="consent-note">
-              <strong>How we use your information:</strong> Annual revenue data helps us match 
-              you with appropriate service tiers. Automated recommendations are starting points 
-              for discussion, not professional advice. After submission, we'll email a confirmation 
-              and call within 24 business hours to schedule your free consultation.
-            </p>
+          
+          <!-- Honeypot field for bot protection -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
           </div>
-          <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
         </div>
       </form>
     </div><!-- /.onboarding-container -->
@@ -1293,7 +1317,7 @@
         pkgDetails.innerHTML =
           '<div style="margin: 16px 0 0;">' +
             '<span class="package-badge">' + pkgName + '</span>' +
-            '<span class="package-price">' + pkgPrice + '</span>' +
+            '<span class="package-price">' + pkgPrice + '<span class="price-note">estimated starting price, subject to change</span></span>' +
             '<p class="package-description">' + pkgDesc + '</p>' +
             '<ul class="package-features">' +
               pkgFeatures.map(function(f) { return '<li>' + f + '</li>'; }).join('') +
@@ -1444,6 +1468,33 @@
           document.getElementById('email-error').classList.add('show');
           markInvalid(emailInput);
           valid = false;
+        }
+
+        // Validate consent checkboxes (CRITICAL: form has novalidate)
+        const privacyConsent = document.getElementById('privacy-consent');
+        if (!privacyConsent.checked) {
+          document.getElementById('privacy-consent-error').classList.add('show');
+          markInvalid(privacyConsent);
+          valid = false;
+        }
+
+        const contactConsent = document.getElementById('contact-consent');
+        if (!contactConsent.checked) {
+          document.getElementById('contact-consent-error').classList.add('show');
+          markInvalid(contactConsent);
+          valid = false;
+        }
+
+        // Honeypot validation (bot protection)
+        const honeypot = form.querySelector('input[name="website"]');
+        if (honeypot && honeypot.value.trim() !== '') {
+          // Bot detected - silently fail
+          console.log('Bot detected via honeypot field');
+          showStatus('Thank you for your submission. We\'ll be in touch soon.', 'success');
+          submitBtn.innerHTML = origText;
+          submitBtn.disabled = false;
+          isSubmitting = false;
+          return;
         }
 
         if (!valid) {
