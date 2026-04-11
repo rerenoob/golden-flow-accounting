@@ -346,8 +346,27 @@
     </nav>
   </header>
 
-    <main id="main-content">
-    <div class="policy-container">
+  <!-- Back navigation for users coming from onboarding form -->
+  <div class="back-nav">
+    <div class="container">
+      <a href="onboarding.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Onboarding Form
+      </a>
+      <span class="nav-divider">•</span>
+      <a href="../index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 8H13M8 3L13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="privacy-container">
             <div class="privacy-header">
         <h1>Terms of Service</h1>
         <p class="privacy-meta">
@@ -356,13 +375,11 @@
           <span class="read-time">~3 min read</span>
           <a href="javascript:window.print()" class="print-button" title="Print this page">Print</a>
         </p>
-      </div>
         <p class="policy-intro">
           These Terms of Service ("Terms") govern your use of the Golden Flow Accounting & Tax website 
           and services. By accessing our website or submitting information through our forms, you agree 
           to these Terms.
         </p>
-      </div>
 
             <!-- Table of Contents -->
       <nav class="toc" aria-label="Policy sections">
@@ -387,7 +404,8 @@
           <strong>Important:</strong> The information provided on our website, including any 
         automated service recommendations generated through our onboarding form, is for 
         informational purposes only and does not constitute professional accounting or tax advice. 
-        All formal engagements require a signed written agreement.</section>
+        All formal engagements require a signed written agreement.
+      </section>
 
       <section class="policy-section" id="consultation">
         <h2><span class="section-icon">&#128172;</span> 2. Free Consultation Terms</h2>
@@ -401,7 +419,7 @@
         <div class="highlight-box">
           <strong>No Obligation:</strong> The consultation is provided at no cost and with no 
         obligation to engage our services. We will not pressure you to sign any agreement during 
-        or immediately after the consultation.</p>
+        or immediately after the consultation.
       </section>
 
       <section class="policy-section" id="data-submission">
@@ -481,7 +499,7 @@
         to understand how we handle your information and govern our relationship.</p>
       </div>
     </div>
-  </main></main>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -510,13 +528,14 @@
             <li><a href="../index.html#about">About Us</a></li>
             <li><a href="onboarding.html">Contact</a></li>
             <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
           </ul>
         </div>
       </nav>
     </div>
     <div class="footer-bar">
       <div class="container">
-        <p>Golden Flow Accounting and Tax — Golden Flow LLC, registered in Texas. &nbsp;|&nbsp; <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a></p>
+        <p>Golden Flow Accounting and Tax — Golden Flow LLC, registered in Texas. &nbsp;|&nbsp; <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms-of-service.html" style="color: inherit; text-decoration: underline;">Terms of Service</a></p>
       </div>
     </div>
   </footer>
